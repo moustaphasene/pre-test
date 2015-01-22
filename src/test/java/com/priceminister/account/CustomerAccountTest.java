@@ -29,6 +29,7 @@ public class CustomerAccountTest {
     @Before
     public void setUp() throws Exception {
         customerAccount = new CustomerAccount();
+        rule = new CustomerAccountRule();
     }
     
     /**
@@ -36,7 +37,8 @@ public class CustomerAccountTest {
      */
     @Test
     public void testAccountWithoutMoneyHasZeroBalance() {
-        fail("not yet implemented");
+        Assert.notNull(customerAccount.getBalance());
+        Assert.isTrue(0.0==customerAccount.getBalance());
     }
     
     /**
@@ -44,7 +46,9 @@ public class CustomerAccountTest {
      */
     @Test
     public void testAddPositiveAmount() {
-        fail("not yet implemented");
+        Double addedAmount = 12.0;
+        customerAccount.add(addedAmount);
+        Assert.isTrue(addedAmount==customerAccount.getBalance());
     }
     
     /**
@@ -53,7 +57,14 @@ public class CustomerAccountTest {
      */
     @Test
     public void testWithdrawAndReportBalanceIllegalBalance() {
-        fail("not yet implemented");
+        Double withdrawnAmount = 15.0;
+    	try {
+			customerAccount.withdrawAndReportBalance(withdrawnAmount, rule);
+            Assert.isTrue(false);
+		} catch (IllegalBalanceException e) {
+			Assert.isTrue(e.toString().equals(
+					"Illegal account balance: " + (customerAccount.getBalance() - withdrawnAmount)));
+		}
     }
     
     // Also implement missing unit tests for the above functionalities.
