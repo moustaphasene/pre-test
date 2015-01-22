@@ -7,8 +7,8 @@ public class CustomerAccount implements Account {
 
     private Double amount;
     
-    public CustomerAccount(Double amount) {
-        this.amount = amount;
+    public CustomerAccount() {
+        this.amount = 0.0;
     }
 
     public void add(Double addedAmount) {
