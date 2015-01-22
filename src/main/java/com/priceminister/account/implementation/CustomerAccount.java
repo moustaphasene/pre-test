@@ -24,6 +24,7 @@ public class CustomerAccount implements Account {
     	Double result=0.0;
     	result = this.amount - withdrawnAmount;
         if (rule.withdrawPermitted(result)) {
+            this.amount = result;
             return result;
         } else {
             throw new IllegalBalanceException(result);
